@@ -1,0 +1,15 @@
+These are also called as Binary Indexed Tree
+
+Whenever we need to find the sum of elements of a range in an array it would take O(n) time 
+This can be reduced to O(1) using prefix sum array but updating an element would take O(n)
+time again.
+
+In Fenwick trees there will be nodes marked as Responsible 
+
+To update an entry we have to delete the previous value and add new value to all nodes that 
+are Responsible for that index.The responsible nodes can be found using the method of adding
+LSB to current node and updating it.
+
+To find the sum of a range we have to add values of all nodes which are all responsibilities 
+of the given node. The nodes that are responsibilities of a node can be obtained by subtracting
+LSB from it

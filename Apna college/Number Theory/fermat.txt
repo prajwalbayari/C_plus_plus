@@ -1,0 +1,20 @@
+Fermat's little theorem:
+
+Fermat's little theorem states that if p is a prime number then for any integer a ,
+the number a^p-a is an integer multiple of p a^p =~ a%p (=~ means congruent)
+
+If a is not divisible by p, fermat's little theorem is equivalent to the statement that 
+a^(p-1)-1 is an integer multiple of p a^(p-1) =~ 1%p
+
+Applications: 
+*Evaluating (a/b)%m=(a%m)*((b^-1)%m)
+*Used to calculate nCr
+
+If p>n (cannot use if p>n)
+1.Pre-calculate factorials taking modulo p.
+2.nCr%p= (fact[n]*modInverse(fac[r])%p*modInverse(fac[n-r])%p)%p
+
+Wilson's theorem:
+
+A positive integer n is prime iff (n-1)!=~(-1%n) or (n-1)!=~((n-1)%n)
+(n-1)! is 1 less than a multiple of n
