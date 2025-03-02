@@ -22,6 +22,35 @@ bool DFS(vector<vector<int>>& edges,vector<int>& vis,int src,vector<int>& path){
     return false;
 }
 
+//Using BFS (Kahn's algorithm)
+
+bool BFS(vector<vector<int>>& edges){
+    int n=edges.size(),cnt=0;
+    vector<int> indeg(n+1,0);
+    for(int i=0;i<n;i++){
+        for(int node:edges[i])
+            indeg[node]++;
+    }
+    queue<int> q;
+    for(int i=1;i<=n;i++){
+        if(indeg[i]==0)
+            q.push(i);
+    }
+
+    while(!q.empty()){
+        int node=q.front();
+        q.pop();
+        cnt++;
+        for(int child:edges[node]){
+            indeg[child]--;
+            if(indeg[child]==0)
+                q.push(child);
+        }
+    }
+
+    return cnt!=n-1;
+}
+
 int main(){
     int m,n;
     cout<<"Enter the number of nodes and edges: ";
