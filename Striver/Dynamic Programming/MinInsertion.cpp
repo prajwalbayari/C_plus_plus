@@ -1,4 +1,4 @@
-// A palindromic string is a string that is equal to its reverse. For example: “Nitin” is a palindromic string. Now the question states to find the length of the longest palindromic subsequence of a string. It is that palindromic subsequence of the given string with the greatest length. We need to print the length of the longest palindromic subsequence.
+// A palindromic string is a string that is the same as its reverse. For example: “nitin” is a palindromic string. Now the question states that we are given a string, we need to find the minimum insertions that we can make in that string to make it a palindrome.
 
 #include<iostream>
 #include<vector>
@@ -62,5 +62,5 @@ int main(){
     reverse(str1.begin(),str1.end());
     int m=str1.size();
     vector<vector<int>> dp(m+1,vector<int>(m+1,-1));
-    cout<<"The length of the longest palindromic subsequence is: "<<LCS(str1,str2)<<endl;
+    cout<<"The number of minimum insertions to make string palindromic is: "<<m-LCS(m,m,str1,str2,dp)<<endl;
 }
