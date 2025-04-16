@@ -34,7 +34,7 @@ int stock(int n,vector<int>& vec,vector<vector<int>>& dp){
 
 //Space optimization
 int stock(int n,vector<int>& vec){
-    vector<int> next(n+1,0),cur(n+1,0);
+    vector<int> next(2,0),cur(2,0);
     for(int i=n-1;i>=0;i--){
         for(int j=0;j<2;j++){
             if(j)
