@@ -57,6 +57,21 @@ int subseq(vector<int>& arr){
     }
     return cur[0];
 }
+
+//LIS using binary search
+int subseq(vector<int>& arr,int n){
+    vector<int> temp;
+    temp.push_back(arr[0]);
+    for(int i=1;i<n;i++){
+        if(arr[i]>temp.back())
+            temp.push_back(arr[i]);
+        else{
+            int idx=lower_bound(temp.begin(),temp.end(),arr[i]);
+            temp[idx]=arr[i]
+        }
+    }
+    return temp.size();
+}
  
 //Algorithm to print LIS
 int algo(vector<int>& vec){
@@ -93,8 +108,8 @@ int main(){
     for(int i=0;i<n;i++)
         cin>>vec[i];
     vector<vector<int>> dp(n+1,vector<int>(n+1,0));
-    algo(vec);
-    // cout<<"The length of the longest increasing subsequence is: "<<algo(vec)<<endl;
+    // algo(vec);
+    cout<<"The length of the longest increasing subsequence is: "<<subseq(vec,n)<<endl;
 }
 
 //Memoization
@@ -104,3 +119,11 @@ int main(){
 //Tabulation
 //Time complexity: O(n*n)
 //Space complexity: O(n*n)
+
+//Space optimization
+//Time complexity: O(n*n)
+//Space complexity: O(n)
+
+///Binary search
+//Time complexity: O(nlog(n))
+//Space complexity: O(n)
