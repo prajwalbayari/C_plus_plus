@@ -15,21 +15,14 @@ int optimized(vector<int>& vec){
     unordered_map<int,int> mp;
     while(r<n){
         mp[vec[r]]++;
-        if(mp.size()==3){
+        if(mp.size()>2){
             mp[vec[l]]--;
-            if(mp[vec[l]]==0){
+            if(mp[vec[l]]==0)
                 mp.erase(vec[l]);
-                l++;
-            }else{
-                l++;
-                continue;
-            }
+            l++;
         }
-        int temp=0;
-        for(auto it:mp)
-            temp+=it.second;
-        
-        ans=max(ans,temp);
+        if(mp.size()<=2)
+            ans=max(ans,r-l+1);
         r++;
     }
     return ans;
@@ -62,7 +55,7 @@ int main(){
     }
 
     cout<<"The maximum answer is: "<<ans<<endl;
-    cout<<"(Optimized)The maximum answer is: "<<ans<<endl;
+    cout<<"(Optimized)The maximum answer is: "<<optimized(vec)<<endl;
 }
 
 // Time complexity: O(n+n)
