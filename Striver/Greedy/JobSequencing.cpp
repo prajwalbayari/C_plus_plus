@@ -30,7 +30,7 @@ int main(){
     mp[maxDeadline+1]=-1;
     for(int i=0;i<n;i++){
         for(int j=vec[i][1];j>=0;j--){
-            if(mp[j]==-1){
+            if(mp.find(j)==mp.end()){
                 cnt++;
                 mp[j]=vec[i][0];
                 totalProfit+=vec[i][2];
