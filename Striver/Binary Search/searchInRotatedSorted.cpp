@@ -4,7 +4,7 @@
 #include<vector>
 using namespace std;
 
-int searchInRotatedSorted(int ele,vector<int>& vec){
+int searchInRotatedSorted1(int ele,vector<int>& vec){
     int high=vec.size()-1,low=0;
     while(low<=high){
         int mid=low+(high-low)/2;
@@ -17,13 +17,43 @@ int searchInRotatedSorted(int ele,vector<int>& vec){
                 low=mid+1;
         }else{
             if(vec[mid]<=ele && vec[high]>=ele)
-                low=mid+1;
+            low=mid+1;
             else
-                high=mid-1;
+            high=mid-1;
         }
     }
     return -1;
 }
+//Time complexity: O(log(n))
+//Space complexity: O(1)
+
+int searchInRotatedSorted2(int ele,vector<int>& vec){
+    int high=vec.size()-1,low=0;
+    while(low<=high){
+        int mid=low+(high-low)/2;
+        if(vec[mid]==ele)
+        return mid;
+        // Makes sure that repetition of elements does not effect our answer eg:[3,1,2,3,3,3,3,3]
+        if(vec[low]==vec[mid] && vec[mid]==vec[high]){ 
+            low++,high--;
+            continue;
+        }
+        if(vec[low]<=vec[mid]){
+            if(vec[low]<=ele && ele<=vec[mid])
+            high=mid-1;      
+            else   
+            low=mid+1;
+        }else{
+            if(vec[mid]<=ele && vec[high]>=ele)
+            low=mid+1;
+            else
+            high=mid-1;
+        }
+    }
+    return -1;
+}
+//Time complexity: O(n/2)
+//Space complexity: O(1)
 
 int main(){
     int n;
@@ -36,13 +66,10 @@ int main(){
     int ele;
     cout<<"Enter the element: ";
     cin>>ele;
-    int idx=searchInRotatedSorted(ele,vec);
+    int idx=searchInRotatedSorted2(ele,vec);
     if(idx==-1)
         cout<<"Element not found!\n";
     else
         cout<<"Element found at index: "<<idx<<endl;
     return 0;
 }
-
-//Time complexity: O(log(n))
-//Space complexity: O(1)
