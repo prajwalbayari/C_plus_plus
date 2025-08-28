@@ -26,12 +26,16 @@ int main(){
     int n,b,adj;
     cout<<"Enter the number of roses, number of boquets and number of adjacent roses required to make each boquet: ";
     cin>>n>>b>>adj;
+    if(b*adj>n){
+        cout<<"Not possible to make all boquets\n";
+    }
     cout<<"Enter the bloom day of each flower: ";
     vector<int> vec(n);
-    int low=0,high=-1,ans=-1;
+    int low,high,ans=-1;
     for(int i=0;i<n;i++){
         cin>>vec[i];
         high=max(high,vec[i]);
+        low=min(low,vec[i]);
     }
 
     while(low<=high){
@@ -43,12 +47,9 @@ int main(){
             low=mid+1;
         }
     }
-    if(ans==-1)
-        cout<<"Not possible to make all boquets\n";
-    else
         cout<<"Minimum number of days required to make all boquets is: "<<ans<<endl;
     return 0;
 }
 
-// Time complexity: O(n*log(k)) where k is the maximum blooming day
+// Time complexity: O(n*log(k)) where k is the difference between maximum and minimum blooming day
 // Space complexity: O(1)
